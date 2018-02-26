@@ -1,5 +1,5 @@
-from exceptions import *
-from parser import Parser
+from thumb_scraper.exceptions import *
+from thumb_scraper.parser import Parser
 
 
 class WebPage(object):

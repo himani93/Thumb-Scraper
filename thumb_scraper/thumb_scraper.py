@@ -3,9 +3,9 @@ import requests
 
 from lxml import etree
 
-from config import Config
-from exceptions import *
-from webpage import WebPage
+from thumb_scraper.config import Config
+from thumb_scraper.exceptions import *
+from thumb_scraper.webpage import WebPage
 
 
 class ThumbScraper(object):
@@ -38,12 +38,18 @@ class ThumbScraper(object):
 
     def _get_webpage(self, url=""):
         absolute_url = self._get_absolute_url(url)
-        response = requests.get(url=absolute_url, auth=(Config.USERNAME, Config.PASSWORD))
+
+        try:
+            response = requests.get(url=absolute_url, auth=(Config.USERNAME, Config.PASSWORD))
+        except Exception as e:
+            raise WebPageNotRetrievedException("{} not retrieved, Error: {}".format(url, e))
+
         if not response.ok:
             raise WebPageNotRetrievedException("{} not retrieved, status_code: {}".format(url, response.status_code))
 
         content_type, charset = cgi.parse_header(response.headers["Content-Type"])
         webpage = WebPage(url, response.content, content_type)
+
         return webpage
 
     def _scrape_page(self, page_name, url=""):
@@ -52,6 +58,8 @@ class ThumbScraper(object):
 
         page = self._pages_to_scrape[page_name]
         webpage = self._get_webpage(url)
+        query = page.get("xpath_test_query")
+        result = page.get("xpath_test_result")
         if webpage.is_tampered(query, result):
             raise PageTamperedException("Page {} is tampered".format(page_name))
 

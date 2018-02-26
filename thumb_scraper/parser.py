@@ -1,3 +1,8 @@
+from lxml import etree
+
+from thumb_scraper.exceptions import *
+
+
 class Parser(object):
 
     def __init__(self):
