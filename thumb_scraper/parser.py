@@ -1,0 +1,12 @@
+class Parser(object):
+
+    def __init__(self):
+        self.parser = {
+            "html": etree.HTMLParser(),
+        }
+
+    def get_parser(self, doc_type):
+        if doc_type not in self.parser:
+            raise PaserNotFoundException("{} parser is not available".format(doc_type))
+
+        return self.parser[doc_type]
