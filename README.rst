@@ -23,8 +23,8 @@ Assumptions:
 Questions:
 ---
 
-Should a message be shown in case scraping stops due to one of the above mentioned reasons? If yes, what?
-
+1. Should a message be shown in case scraping stops due to one of the above mentioned reasons? If yes, what?
+2. After how many iterations should the scraper stop?
 
 Usage
 ---
@@ -34,6 +34,7 @@ Usage
 4. `python setup.py install`
 5. `thumbscraper --pages ./thumb_scarper/pages.json --url https://yolaw-tokeep-hiring-env.herokuapp.com/`
 
+**Note** - Check `thumbscraper --help` for more info on params.
 
 How to edit config:
 ---

@@ -3,7 +3,7 @@ import pytest
 from thumb_scraper.exceptions import *
 from thumb_scraper.webpage import WebPage
 from thumb_scraper.scraper import ThumbScraper
-
+from thumb_scraper.command_line import read_json_file
 
 class TestThumbScraper(object):
 
