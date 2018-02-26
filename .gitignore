@@ -5,3 +5,4 @@ files/*
 
 /dist/
 /*.egg-info
+*.egg
