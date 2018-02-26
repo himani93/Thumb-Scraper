@@ -28,14 +28,17 @@ Should a message be shown in case scraping stops due to one of the above mention
 
 Usage
 ---
-Create a `config.py` file in thumb_parser where authentication keys are provided.
+1. Create a virtualenv and activate it.
+2. `pip install -r requirements.txt -r test_requirements.txt`
+3. Create a `config.py` file in thumb_parser where authentication keys are provided.
 
-```
-USERNAME=<usernmae>
-PASSWORD=<password>
-```
-
-`thumbscraper --pages ./thumb_scarper/pages.json --url https://yolaw-tokeep-hiring-env.herokuapp.com/`
+   ```
+   USERNAME=<usernmae>
+   PASSWORD=<password>
+   ```
+4. `pip install -e .`
+4.
+   `thumbscraper --pages ./thumb_scarper/pages.json --url https://yolaw-tokeep-hiring-env.herokuapp.com/`
 
 How to run tests:
 ---
