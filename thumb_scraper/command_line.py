@@ -16,7 +16,7 @@ def main():
     parser = argparse.ArgumentParser(description="Legalstart Thumb Parser Solution",
                                      add_help=True,
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument('--url', dest='url', required=True, default="https://yolaw-tokeep-hiring-env.herokuapp.com/",
+    parser.add_argument('--url', dest='url', required=False, default="https://yolaw-tokeep-hiring-env.herokuapp.com/",
                         help="Link to first page")
     parser.add_argument('--pages', dest='pages_location', required=True,
                         help="Location to pages JSON file")

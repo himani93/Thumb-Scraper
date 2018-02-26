@@ -25,4 +25,7 @@ setup(name='ThumbScraper',
       tests_require=['pytest'],
       setup_require=['pytest-runner'],
       include_package_data=True,
+      entry_points={
+          'console_scripts': ['thumbscraper=thumb_scraper.command_line:main'],
+      },
       zip_safe=False)
