@@ -1,6 +1,12 @@
 class ParserNotFoundException(Exception):
     pass
 
+class WebPageParseException(Exception):
+    pass
+
+class EvaluateQueryException(Exception):
+    pass
+
 class InvalidURLException(Exception):
     pass
 
