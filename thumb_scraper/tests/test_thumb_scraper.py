@@ -102,15 +102,14 @@ class TestThumbScraper(object):
     def test_scrape_when_next_page_is_available(self):
         url = "https://yolaw-tokeep-hiring-env.herokuapp.com/"
         pages = {
-            "0":
-                  {
-                      "next_page_expected": "ada91079",
-                      "xpath_button_to_click": "/html/body/div[2]/nav/div/div/ul/li[1]/div/div/div[3]/ul[2]/li[4]/a",
-                      "xpath_test_query": "//*[@id=\"body\"]/div/div/section[1]/div/h2//text()",
-                      "xpath_test_result": ["\n    \n      Legalstart, le partenaire juridique de plus de 50 000 entrepreneurs\n    "],
+            "0": {
+                "next_page_expected": "ada91079",
+                "xpath_button_to_click": "/html/body/div[2]/nav/div/div/ul/li[1]/div/div/div[3]/ul[2]/li[4]/a",
+                "xpath_test_query": "//*[@id=\"body\"]/div/div/section[1]/div/h2//text()",
+                "xpath_test_result": ["\n    \n      Legalstart, le partenaire juridique de plus de 50 000 entrepreneurs\n    "],
                   },
             "ada91079": {
-                      "next_page_expected": "d1786387",
+                "next_page_expected": "d1786387",
                 "xpath_button_to_click": "/html/body/div[1]/nav/div/div/ul/li[1]/div/div/div[1]/ul/li[6]/a",
                 "xpath_test_query": "//*[@id=\"body\"]/div/div/div/div/div[1]/div[2]/h3//text()",
                 "xpath_test_result": ["Formalit\u00e9s auto-entrepreneur"]
