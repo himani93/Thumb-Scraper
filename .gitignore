@@ -1,0 +1,4 @@
+files/*
+*.pyc
+
+.pytest_cache/
