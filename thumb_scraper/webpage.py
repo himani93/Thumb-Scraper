@@ -1,3 +1,7 @@
+from exceptions import *
+from parser import Parser
+
+
 class WebPage(object):
 
     def __init__(self, url, content, content_type):
@@ -21,3 +25,15 @@ class WebPage(object):
             raise WebPageParseException(e)
 
         return self._tree
+
+    def evaluate_query(self, query):
+        webpage_tree = self.parse()
+        try:
+            query_result = webpage_tree.xpath(query)
+        except Exception as e:
+            raise EvaluateQueryException(e)
+
+        return query_result
+
+    def is_tampered(self, query, result):
+        return False if self.evaluate_query(query) == result else True
