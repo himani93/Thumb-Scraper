@@ -75,7 +75,18 @@ class TestWebPage(object):
         html_parser = Parser().get(content_type)
         web_page = WebPage(url, content, content_type)
 
-        assert web_page.evaluate_query("//text()") == ["Test", "page title"]
+        assert web_page.evaluate_query("//text()") == ["test", "page title"]
 
         with pytest.raises(EvaluateQueryException):
             web_page.evaluate_query("")
+
+    def test_check_webpage_tampered(self):
+        url = "https://yolaw-tokeep-hiring-env.herokuapp.com"
+        content = "<html><head><title>test<body><h1>page title</h3>"
+        content_type = "text/html"
+
+        html_parser = Parser().get(content_type)
+        web_page = WebPage(url, content, content_type)
+
+        assert web_page.is_tampered("//text()", ["test", "page title"]) == False
+        assert web_page.is_tampered("//text()", ["test"]) == True
