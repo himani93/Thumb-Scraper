@@ -1,6 +1,6 @@
 import pytest
 
-# from thumb_scraper.exceptions import *
+from thumb_scraper.exceptions import *
 from thumb_scraper.webpage import WebPage
 from thumb_scraper.scraper import ThumbScraper
 
@@ -29,6 +29,7 @@ class TestThumbScraper(object):
         scraper = ThumbScraper(url=url, pages={})
         webpage = scraper._get_webpage()
         assert isinstance(webpage, WebPage)
+        assert webpage._url == url
 
     def test_scrape_page_when_page_not_found(self):
         page_name = "0"
@@ -36,17 +37,22 @@ class TestThumbScraper(object):
         pages = {}
         scraper = ThumbScraper(url, pages)
 
-        # with pytest.raises(PageNotFoundException):
-            #ThumbScraper._scrape_page(page_name, url)
+        with pytest.raises(PageNotFoundException):
+            scraper._scrape_page(page_name, url)
 
     def test_scrape_page(self):
-        # pages = { "0":
-        #           {
-        #               "next_page_expected": "ada91079",
-        #               "xpath_button_to_click": "/html/body/div[2]/nav/div/div/ul/li[1]/div/div/div[3]/ul[2]/li[4]/a",
-        #               "xpath_test_query": "//*[@id=\"body\"]/div/div/section[1]/div/h2//text()",
-        #               "xpath_test_result": [
-        #                   "\n    \n      Legalstart, le partenaire juridique de plus de 50 000 entrepreneurs\n    "]
-        #           }
-        # }
-        assert True == True
+        url = "https://yolaw-tokeep-hiring-env.herokuapp.com/"
+        pages = { "0":
+                  {
+                      "next_page_expected": "ada91079",
+                      "xpath_button_to_click": "/html/body/div[2]/nav/div/div/ul/li[1]/div/div/div[3]/ul[2]/li[4]/a",
+                      "xpath_test_query": "//*[@id=\"body\"]/div/div/section[1]/div/h2//text()",
+                      "xpath_test_result": [
+                          "\n    \n      Legalstart, le partenaire juridique de plus de 50 000 entrepreneurs\n    "]
+                  }
+        }
+        scraper = ThumbScraper(url, pages)
+
+        next_page_name, next_page_url = scraper._scrape_page("0")
+        assert next_page_name == "ada90197"
+
