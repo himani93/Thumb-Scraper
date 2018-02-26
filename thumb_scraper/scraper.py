@@ -45,10 +45,10 @@ class ThumbScraper(object):
             raise WebPageNotRetrievedException("{} not retrieved, Error: {}".format(url, e))
 
         if not response.ok:
-            raise WebPageNotRetrievedException("{} not retrieved, status_code: {}".format(url, response.status_code))
+            raise WebPageNotRetrievedException("{} not retrieved, status_code: {}".format(absolute_url, response.status_code))
 
         content_type, charset = cgi.parse_header(response.headers["Content-Type"])
-        webpage = WebPage(url, response.content, content_type)
+        webpage = WebPage(absolute_url, response.content, content_type)
 
         return webpage
 
