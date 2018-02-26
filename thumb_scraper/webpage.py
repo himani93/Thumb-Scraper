@@ -7,12 +7,13 @@ from thumb_scraper.parser import Parser
 
 class WebPage(object):
 
-    def __init__(self, url, content="", content_type=""):
+    def __init__(self, url, content="", content_type="", encoding="utf-8"):
         if not url:
             raise InvalidURLException("{} is not valid url".format(url))
         self._url = url
         self._content = content
         self._content_type = content_type
+        self._encoding = encoding
         self._tree = None
 
     def __repr__(self):
@@ -25,7 +26,7 @@ class WebPage(object):
         parser = Parser().get(self._content_type)
 
         try:
-            self._tree = etree.parse(StringIO(unicode(self._content)), parser)
+            self._tree = etree.parse(StringIO(unicode(self._content, self._encoding)), parser)
         except Exception as e:
             raise WebPageParseException(e)
 

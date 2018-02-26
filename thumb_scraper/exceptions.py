@@ -18,3 +18,6 @@ class WebPageNotRetrievedException(Exception):
 
 class PageNotFoundException(Exception):
     pass
+
+class PageTamperedException(Exception):
+    pass

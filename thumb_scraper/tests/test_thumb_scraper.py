@@ -54,5 +54,68 @@ class TestThumbScraper(object):
         scraper = ThumbScraper(url, pages)
 
         next_page_name, next_page_url = scraper._scrape_page("0")
-        assert next_page_name == "ada90197"
+        assert next_page_name == "ada91079"
+        assert next_page_url == []
 
+    def test_scrape_page_is_tampered(self):
+        url = "https://yolaw-tokeep-hiring-env.herokuapp.com/"
+        pages = { "0":
+                  {
+                      "next_page_expected": "ada91079",
+                      "xpath_button_to_click": "/html/body/div[2]/nav/div/div/ul/li[1]/div/div/div[3]/ul[2]/li[4]/a",
+                      "xpath_test_query": "//*[@id=\"body\"]/div/div/section[1]/div/h2//text()",
+                      "xpath_test_result": ["Tampered Page"],
+                  }
+        }
+        scraper = ThumbScraper(url, pages)
+        with pytest.raises(PageTamperedException):
+            next_page_name, next_page_url = scraper._scrape_page("0")
+
+    def test_scrape_when_page_tampered(self):
+        url = "https://yolaw-tokeep-hiring-env.herokuapp.com/"
+        pages = { "0":
+                  {
+                      "next_page_expected": "ada91079",
+                      "xpath_button_to_click": "/html/body/div[2]/nav/div/div/ul/li[1]/div/div/div[3]/ul[2]/li[4]/a",
+                      "xpath_test_query": "//*[@id=\"body\"]/div/div/section[1]/div/h2//text()",
+                      "xpath_test_result": ["Tampered Page"],
+                  }
+        }
+        scraper = ThumbScraper(url, pages)
+        scraped_result  = scraper.scrape()
+        assert scraped_result == ["ALERT - can't move to page 1: page 0 link has been malevolently tampered withh!"]
+
+    def test_scrape_when_next_page_is_unavailable(self):
+        url = "https://yolaw-tokeep-hiring-env.herokuapp.com/"
+        pages = { "0":
+                  {
+                      "next_page_expected": "ada91079",
+                      "xpath_button_to_click": "/html/body/div[2]/nav/div/div/ul/li[1]/div/div/div[3]/ul[2]/li[4]/a",
+                      "xpath_test_query": "//*[@id=\"body\"]/div/div/section[1]/div/h2//text()",
+                      "xpath_test_result": ["\n    \n      Legalstart, le partenaire juridique de plus de 50 000 entrepreneurs\n    "],
+                  }
+        }
+        scraper = ThumbScraper(url, pages)
+        scraped_result  = scraper.scrape()
+        assert scraped_result == ['Moved to page 1']
+
+    def test_scrape_when_next_page_is_available(self):
+        url = "https://yolaw-tokeep-hiring-env.herokuapp.com/"
+        pages = {
+            "0":
+                  {
+                      "next_page_expected": "ada91079",
+                      "xpath_button_to_click": "/html/body/div[2]/nav/div/div/ul/li[1]/div/div/div[3]/ul[2]/li[4]/a",
+                      "xpath_test_query": "//*[@id=\"body\"]/div/div/section[1]/div/h2//text()",
+                      "xpath_test_result": ["\n    \n      Legalstart, le partenaire juridique de plus de 50 000 entrepreneurs\n    "],
+                  },
+            "ada91079": {
+                      "next_page_expected": "d1786387",
+                "xpath_button_to_click": "/html/body/div[1]/nav/div/div/ul/li[1]/div/div/div[1]/ul/li[6]/a",
+                "xpath_test_query": "//*[@id=\"body\"]/div/div/div/div/div[1]/div[2]/h3//text()",
+                "xpath_test_result": ["Formalit\u00e9s auto-entrepreneur"]
+            },
+        }
+        scraper = ThumbScraper(url, pages)
+        scraped_result  = scraper.scrape()
+        assert scraped_result == ['Moved to page 1', "ALERT - can't move to page 2: page 1 link has been malevolently tampered withh!"]
