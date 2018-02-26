@@ -43,4 +43,6 @@ class WebPage(object):
         return query_result
 
     def is_tampered(self, query, result):
-        return False if self.evaluate_query(query) == result else True
+        evaluated_result = self.evaluate_query(query)
+        print evaluated_result, result
+        return False if evaluated_result == result else True

@@ -65,7 +65,9 @@ class ThumbScraper(object):
 
         next_page_name = page["next_page_expected"]
         next_page_xpath_query = page["xpath_button_to_click"]
-        next_page_url = webpage.evaluate_query(next_page_xpath_query)
+        next_button_to_click_links = webpage.evaluate_query(next_page_xpath_query + "/@href")
+
+        next_page_url = [] if not next_button_to_click_links else next_button_to_click_links[0]
 
         return next_page_name, next_page_url
 
