@@ -6,3 +6,4 @@ files/*
 /dist/
 /*.egg-info
 .eggs/
+build/
