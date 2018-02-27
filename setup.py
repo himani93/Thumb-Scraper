@@ -5,7 +5,7 @@ from setuptools import (
 
 
 setup(name='ThumbScraper',
-      version='0.1',
+      version='0.2',
       description='Legalstart - Tom Thumb web scraper',
       long_description='Solution to Tom Thumb Scraper problem of LegalStart',
       classifiers=[

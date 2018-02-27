@@ -63,8 +63,10 @@ class ThumbScraper(object):
         if webpage.is_tampered(query, result):
             raise PageTamperedException("Page {} is tampered".format(page_name))
 
+        # from pudb import set_trace; set_trace()
         next_page_name = page["next_page_expected"]
         next_page_xpath_query = page["xpath_button_to_click"]
+
         next_button_to_click_links = webpage.evaluate_query(next_page_xpath_query + "/@href")
 
         next_page_url = [] if not next_button_to_click_links else next_button_to_click_links[0]
