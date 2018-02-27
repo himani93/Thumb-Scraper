@@ -1,10 +1,12 @@
 
 Solution to Legalstart Thumb Scraper
+
 ----
 
 
 Assumptions:
----
+
+----
 
 2. All other urls are relative to base url specified at time of initialization
 3. Default base URL is http://yolaw-tokeep-hiring-env.herokuapp.com
