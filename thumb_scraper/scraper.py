@@ -82,7 +82,7 @@ class ThumbScraper(object):
             try:
                 page_name, page_url = self._scrape_page(page_name, page_url)
             except PageTamperedException as e:
-                scrape_result.append("ALERT - can't move to page {}: page {} link has been malevolently tampered withh!".format(pages_scraped + 1, pages_scraped))
+                scrape_result.append("ALERT - can't move to page {}: page {} link has been malevolently tampered with!!".format(pages_scraped + 1, pages_scraped))
                 scrape = False
             except Exception as e:
                 scrape = False

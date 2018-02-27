@@ -83,7 +83,7 @@ class TestThumbScraper(object):
         }
         scraper = ThumbScraper(url, pages)
         scraped_result  = scraper.scrape()
-        assert scraped_result == ["ALERT - can't move to page 1: page 0 link has been malevolently tampered withh!"]
+        assert scraped_result == ["ALERT - can't move to page 1: page 0 link has been malevolently tampered with!!"]
 
     def test_scrape_when_next_page_is_unavailable(self):
         url = "https://yolaw-tokeep-hiring-env.herokuapp.com/"
@@ -117,4 +117,10 @@ class TestThumbScraper(object):
         }
         scraper = ThumbScraper(url, pages)
         scraped_result  = scraper.scrape()
-        assert scraped_result == ['Moved to page 1', "ALERT - can't move to page 2: page 1 link has been malevolently tampered withh!"]
+        assert scraped_result == ['Moved to page 1', "ALERT - can't move to page 2: page 1 link has been malevolently tampered with!!"]
+
+    def test_scrape(self):
+        url = "https://yolaw-tokeep-hiring-env.herokuapp.com/"
+        pages = read_json_file("/Users/blue/dev/legalstart/web_scraper_venv/ThumbScraper/thumb_scraper/pages-2.json")
+        scraper = ThumbScraper(url, pages)
+        scraped_result  = scraper.scrape()
