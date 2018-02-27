@@ -35,11 +35,15 @@ Questions
 Usage
 -------
 
-1. Create a virtualenv and activate it.
-2. `tar -xf tar -xf ThumbScraper-0.1.tar.gz`
-3. `cd ThumbScraper-0.1`
-4. `python setup.py install`
-5. `thumbscraper --pages ./thumb_scarper/pages.json --url https://yolaw-tokeep-hiring-env.herokuapp.com/`
+Create a virtualenv and activate it.
+
+`tar -xf tar -xf ThumbScraper-0.1.tar.gz`
+
+`cd ThumbScraper-0.1`
+
+`python setup.py install`
+
+`thumbscraper --pages ./thumb_scarper/pages.json --url https://yolaw-tokeep-hiring-env.herokuapp.com/`
 
 **Note** - Check ```thumbscraper --help```  for more info on params.
 
