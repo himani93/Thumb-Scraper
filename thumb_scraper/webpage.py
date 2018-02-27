@@ -30,7 +30,6 @@ class WebPage(object):
         except Exception as e:
             raise WebPageParseException(e)
 
-        print etree.tostring(self._tree)
         return self._tree
 
     def evaluate_query(self, query):
@@ -44,5 +43,4 @@ class WebPage(object):
 
     def is_tampered(self, query, result):
         evaluated_result = self.evaluate_query(query)
-        print evaluated_result, result
         return False if evaluated_result == result else True

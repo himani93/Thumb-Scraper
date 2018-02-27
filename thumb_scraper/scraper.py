@@ -86,6 +86,7 @@ class ThumbScraper(object):
                 scrape = False
             except Exception as e:
                 scrape = False
+                import traceback; scrape_result.append(traceback.format_exc())
             else:
                 pages_scraped += 1
                 scrape_result.append("Moved to page {}".format(pages_scraped))
