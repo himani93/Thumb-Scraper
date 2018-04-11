@@ -1,5 +1,5 @@
 
-Solution to Legalstart Thumb Scraper
+Solution to Thumb Scraper
 ----
 
 

@@ -13,7 +13,7 @@ def read_json_file(file_path):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Legalstart Thumb Parser Solution",
+    parser = argparse.ArgumentParser(description="Thumb Parser Solution",
                                      add_help=True,
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('--url', dest='url', required=False, default="https://yolaw-tokeep-hiring-env.herokuapp.com/",
